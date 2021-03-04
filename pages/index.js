@@ -14,6 +14,12 @@ const Home = () => {
     const [color, setColor] = useState('color')
     const [type, setType] = useState('jpg')
 
+    useEffect(() => {
+        if (query == '') {
+            setImages(null)
+        }
+    }, [query])
+
     const getImagesThenSetImages = async (e) => {
         e.preventDefault()
         let url = '/api/image?query=' + query + '&num=' + num + '&page=' + page + '&size=' + size + '&color=' + color + '&type=' + type
@@ -28,6 +34,9 @@ const Home = () => {
                 <title>Image Search</title>
             </Head>
             <main className={styles.main}>
+                <div className={styles.alert}>
+                    as the developer of this website, I will not be responsible for the structure of the frontend being broken when you choose size xxlarge or huge
+                </div>
                 <form>
                     <input type='text' required placeholder='funny cat' value={query} onChange={e => setQuery(e.target.value)} />
                     <select value={num} onChange={e => setNum(e.target.value)}>
@@ -78,7 +87,7 @@ const Home = () => {
                     {
                         images == null ? <></> : images.map((image, i) =>
                             <a key={i} href={image.pageURL} target='_blank' title={image.description}>
-                                <img src={image.url} width={image.width} height={image.height}/>
+                                <img src={image.url} width={image.width} height={image.height} />
                             </a>
                         )
                     }

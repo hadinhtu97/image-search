@@ -16,6 +16,7 @@ npm install
 npm run build
 npm run start
 ```
+__If functionals in frontend do not working, try to use API to see error__
 
 ## APIs 
 * GET : `[]/api/image?query={query}` receive array contain url, description, height, width and pageURL of images. List parameters:

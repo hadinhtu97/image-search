@@ -2,7 +2,7 @@ import search from '../../lib/search'
 
 export default async (req, res) => {
     if (req.method == 'GET') {
-        if (req.query.query == undefined) {
+        if (req.query.query == undefined || req.query.query == '') {
             res.json({ error: 'Required query parameter!' })
         } else {
             let arg = {

@@ -111,10 +111,12 @@ const Home = () => {
                     {
                         recents == null ? <></> : recents.map((recent, i) =>
                             <div className={styles.recent} key={i}>
-                                <div>{recent.query}</div>
-                                <div>{recent.created_at}</div>
-                                <div>{recent.ip}</div>
-                                <div>{recent.success == true ? 'Success' : 'False'}</div>
+                                <div className={styles.queryString}>{recent.query}</div>
+                                <div className={styles.moreInfo}>
+                                    <div className={styles.created_at}>{recent.created_at} &nbsp; </div>
+                                    <div className={styles.ip}>{recent.ip} &nbsp; </div>
+                                    <div style={recent.success == true ? { color: '#392b4c' } : { color: '#2b4c46' }}>{recent.success == true ? 'Success' : 'False'}</div>
+                                </div>
                             </div>
                         )
                     }

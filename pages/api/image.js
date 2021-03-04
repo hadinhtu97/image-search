@@ -1,6 +1,11 @@
 import search from '../../lib/search'
+import dbConnect from '../../utils/dbConnect'
+import Recent from '../../models/Recent'
 
 export default async (req, res) => {
+
+    await dbConnect()
+
     if (req.method == 'GET') {
         if (req.query.query == undefined || req.query.query == '') {
             res.json({ error: 'Required query parameter!' })
@@ -14,6 +19,16 @@ export default async (req, res) => {
                 type: req.query.type || 'jpg'
             }
             let data = await search(arg)
+            let recent = new Recent({
+                query: '?query=' + arg.query + '&num=' + arg.num + '&page=' + arg.page + '&size=' + arg.size + '&color=' + arg.color + '&type=' + arg.type,
+                created_at: new Date(),
+                ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+                success: true
+            })
+            if (data.hasOwnProperty('error') == true) {
+                recent.success = false
+            }
+            await recent.save()
             res.json(data)
         }
     } else {

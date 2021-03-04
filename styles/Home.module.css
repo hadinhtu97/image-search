@@ -55,3 +55,44 @@
     background-color: #2a2f4a;
     color: #eaeaea
 }
+
+.recents {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.recent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.queryString {
+    font-size: 1.2rem;
+    color: #eaeaea;
+    margin-bottom: 0.2rem;
+    font-style: italic;
+}
+
+.moreInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width: 500px) {
+    .moreInfo{
+        flex-direction: column;
+
+    }
+}
+
+.created_at, .ip {
+    color: #392b4c;
+}

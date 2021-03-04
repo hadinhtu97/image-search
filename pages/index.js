@@ -6,6 +6,7 @@ import fetch from 'node-fetch'
 const Home = () => {
 
     const [images, setImages] = useState(null)
+    const [recents, setRecents] = useState(null)
 
     const [query, setQuery] = useState('')
     const [num, setNum] = useState(10)
@@ -18,6 +19,7 @@ const Home = () => {
         if (query == '') {
             setImages(null)
         }
+        setRecents(null)
     }, [query])
 
     const getImagesThenSetImages = async (e) => {
@@ -26,6 +28,15 @@ const Home = () => {
         let res = await fetch(url)
         let data = await res.json()
         data.hasOwnProperty('error') == true ? setImages(null) : setImages(data)
+    }
+
+    const getRecentsThenSetRecents = async (e) => {
+        e.preventDefault()
+        setQuery('')
+        let url = '/api/recent'
+        let res = await fetch(url)
+        let data = await res.json()
+        setRecents(data)
     }
 
     return (
@@ -37,6 +48,7 @@ const Home = () => {
 
                 <div className={styles.form} style={query == '' ? { height: '20rem' } : {}}>
                     <form>
+                        <input className={styles.submit} type='submit' value='recent' onClick={getRecentsThenSetRecents} />
                         <input className={styles.query} type='search' placeholder='funny cat' value={query} onChange={e => setQuery(e.target.value)} />
                         <select className={styles.select} value={num} onChange={e => setNum(e.target.value)}>
                             <option value={1}>1</option>
@@ -80,7 +92,7 @@ const Home = () => {
                             <option value='jpg'>jpg</option>
                             <option value='png'>png</option>
                         </select>
-                        <input className={styles.submit} type='submit' value='search' onClick={getImagesThenSetImages} /> <br />
+                        <input className={styles.submit} type='submit' value='search' onClick={getImagesThenSetImages} />
                         <div className={styles.alert}>
                             as the developer of this website, I will not be responsible if frontend being broken when you choose huge size
                         </div>
@@ -92,6 +104,20 @@ const Home = () => {
                             <a key={i} href={image.pageURL} target='_blank' title={image.description}>
                                 <img className={styles.image} src={image.url} width={image.width} height={image.height} />
                             </a>
+                        )
+                    }
+                </div>
+                <div className={styles.recents}>
+                    {
+                        recents == null ? <></> : recents.map((recent, i) =>
+                            <div className={styles.recent} key={i}>
+                                <div className={styles.queryString}>{recent.query}</div>
+                                <div className={styles.moreInfo}>
+                                    <div className={styles.created_at}>{recent.created_at} &nbsp; </div>
+                                    <div className={styles.ip}>{recent.ip} &nbsp; </div>
+                                    <div style={recent.success == true ? { color: '#392b4c' } : { color: '#2b4c46' }}>{recent.success == true ? 'Success' : 'False'}</div>
+                                </div>
+                            </div>
                         )
                     }
                 </div>

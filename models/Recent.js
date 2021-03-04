@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
 
 const recentSchema = new mongoose.Schema({
-    query: String,
+    query: Object,
     created_at: Date,
-    id: String,
-    status: Boolean
+    ip: String,
+    success: Boolean
 })
 
 export default mongoose.models.Recent || mongoose.model('Recent', recentSchema)

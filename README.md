@@ -19,26 +19,28 @@ npm run start
 __If functionals in frontend do not working, try to use API to see error__
 
 ## APIs 
-* GET : `[]/api/image?query={query}` receive array contain url, description, height, width and pageURL of images. List parameters:
-  * `query` (required) : query to search images
-  * `num` (optional) : length or array will received, must from 1 to 10. Default is `10`.
-  * `page` (optional) : searching images on this page, must from 1 to 9. Default is `1`.
-  * `size` (optional) : size of images received. Valid values are:
-    * `icon`
-    * `small`
-    * `medium` : default
-    * `large`
-    * `xlarge`
-    * `xxlarge`
-    * `huge`
-  * `color` (optional) : color type of images received. Valid values are:
-    * `color` : default
-    * `gray`
-    * `mono` : black and white
-    * `trans` : transparent background
-  * `type` (optional) : type of images received. Valid values are:
-    * `jpg` : default
-    * `png`
+* GET : 
+  * `[]/api/image?query={query}` receive array contain url, description, height, width and pageURL of images. List parameters:
+    * `query` (required) : query to search images
+    * `num` (optional) : length or array will received, must from 1 to 10. Default is `10`.
+    * `page` (optional) : searching images on this page, must from 1 to 9. Default is `1`.
+    * `size` (optional) : size of images received. Valid values are:
+      * `icon`
+      * `small`
+      * `medium` : default
+      * `large`
+      * `xlarge`
+      * `xxlarge`
+      * `huge`
+    * `color` (optional) : color type of images received. Valid values are:
+      * `color` : default
+      * `gray`
+      * `mono` : black and white
+      * `trans` : transparent background
+    * `type` (optional) : type of images received. Valid values are:
+      * `jpg` : default
+      * `png`
+  * `[]/api/recent` : Get 10 recently requests include query, date, ip and success
 
 ## Demo 
 [Link demo](https://image-search.hadinhtu97.repl.co/)

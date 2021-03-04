@@ -13,6 +13,8 @@ Using Google API to search image.
 git clone https://github.com/hadinhtu97/image-search
 cd image-search
 npm install
+touch .env
+[project use mongodb as database, you need to add MONGO_URI variable to .env. Without it, you can't get recent query]
 npm run build
 npm run start
 ```

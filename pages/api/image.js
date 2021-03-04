@@ -20,7 +20,7 @@ export default async (req, res) => {
             }
             let data = await search(arg)
             let recent = new Recent({
-                query: arg,
+                query: '?query=' + arg.query + '&num=' + arg.num + '&page=' + arg.page + '&size=' + arg.size + '&color=' + arg.color + '&type=' + arg.type,
                 created_at: new Date(),
                 ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
                 success: true

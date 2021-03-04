@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 
 const recentSchema = new mongoose.Schema({
-    query: Object,
+    query: String,
     created_at: Date,
     ip: String,
     success: Boolean
